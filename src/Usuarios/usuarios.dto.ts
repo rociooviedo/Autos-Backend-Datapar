@@ -1,23 +1,39 @@
 import { Type } from "class-transformer";
-import { IsDate, isEnum, IsEnum, IsOptional, IsString, Length } from "class-validator";
-import { Tipo_usuario } from "src/enums/tipo_usuario.enum";
-import { Status } from "src/enums/Status.enum";
+import { IsDate, IsEnum, IsOptional, IsString } from "class-validator";
+import { tipo_usuario } from "src/enums/tipo_usuario.enum";
+import { status } from "src/enums/Status.enum";
 
 export class UsuariosDto {
-    
-    @Length(1)
+
+    @IsDate()
+    @IsOptional()
+    fecha_creacion: Date;
+
+    @IsDate()
+    @IsOptional()
+    fecha_alteracion: Date;
+
     @IsString()
+    @IsOptional()
+    descripcion: string;
+
+    @IsString()
+    @IsOptional()
     nombre: string;
+
+    @IsString()
+    @IsOptional()
+    login: string;
 
     @IsString()
     @IsOptional()
     contrasenha: string;
 
-    @IsEnum(Status, {message:'Error en situacion'})
-    situacion: Status;
+    @IsEnum(tipo_usuario,{message: 'Error en tipo usuario'})
+    tipo_usuario: tipo_usuario;
 
-    @IsEnum(Tipo_usuario,{message: 'Error en tipo usuario'})
-    tipoUsuario: Tipo_usuario;
+    @IsEnum(status, {message:'Error en situacion'})
+    status: status;
 }
 
 function countryCode(countryCode: any, string: any, arg2: any) {

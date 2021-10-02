@@ -1,8 +1,20 @@
 import { Type } from "class-transformer";
-import { IsEnum, IsInt, IsOptional, IsString, Length} from "class-validator";
-import { Status } from "src/enums/Status.enum";
+import { IsEnum, IsInt, IsOptional, IsString, Length, IsDate} from "class-validator";
+import { disponibilidad } from "src/enums/disponibilidad.enum";
 
 export class AutosDto {
+
+    @IsDate()
+    @IsOptional()
+    fecha_creacion: Date;
+
+    @IsDate()
+    @IsOptional()
+    fecha_alteracion: Date;
+
+    @IsString()
+    @IsOptional()
+    descripcion:string;
     
     @IsString()
     @IsOptional()
@@ -32,14 +44,9 @@ export class AutosDto {
     @IsOptional()
     anhomodelo: number;
 
-    @IsString()
-    @IsOptional()
-    descripcion: string;
+    @IsEnum(disponibilidad, {message:'Error en disponibilidad'})
+    disponibilidad: disponibilidad;
 
-    @IsEnum(Status, {message:'Error en situacion'})
-    situacion: Status;
-
- 
 }
 
 function countryCode(countryCode: any, string: any, arg2: any) {

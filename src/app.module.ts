@@ -4,8 +4,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsuariosModule } from './Usuarios/usuarios.module';
 import { AutosModule } from './Autos/autos.module';
-import { ServiciosModule } from './Servicios/servicios.module';
+import { TiposServiciosModule } from './TiposServicio/tipos-servicio.module';
 import { AgendamientosModule } from './Agendamientos/agendamientos.module';
+import { ServiciosModule } from './Servicios/servicios.module';
 
 @Module({
   imports: [ 
@@ -24,8 +25,9 @@ import { AgendamientosModule } from './Agendamientos/agendamientos.module';
     }), 
     UsuariosModule,
     AutosModule,
-    ServiciosModule,
+    TiposServiciosModule,
     AgendamientosModule,
+    ServiciosModule,
     ],
     controllers: [AppController],
     providers: [AppService],

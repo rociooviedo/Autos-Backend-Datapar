@@ -29,7 +29,7 @@ export class AgendamientosService {
       async editOne(id: number, dto: AgendamientosDto) {
         const agendamiento = await this.repository.findOne(id);
     
-        if (!agendamiento) throw new NotFoundException('Agendamiento does not exist');
+        if (!agendamiento) throw new NotFoundException('Agendamientos does not exist');
     
         const editedagendamiento = Object.assign(agendamiento, dto);
         return await this.repository.save(editedagendamiento);

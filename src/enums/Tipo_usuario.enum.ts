@@ -1,5 +1,5 @@
-export enum Tipo_usuario{
-    ADMINISTRADOR = 'Administrador',
-    Usuario = 'Usuario',
+export enum tipo_usuario{
+    ADMINISTRADOR = 'A',
+    Usuario = 'U',
 
 }

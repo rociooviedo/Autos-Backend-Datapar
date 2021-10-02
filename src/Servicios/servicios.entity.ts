@@ -1,9 +1,8 @@
+import { estado } from "src/enums/estado.enum";
+import { Column, Entity, PrimaryGeneratedColumn,ManyToOne, OneToOne } from "typeorm";
 import { Auto } from "src/Autos/autos.entity";
-import { Status } from "src/enums/Status.enum";
-import { Tipo_servicio } from "src/enums/tipo_servicio.enum";
 import { Usuario } from "src/Usuarios/usuarios.entity";
-
-import { Column, Entity, PrimaryGeneratedColumn,OneToMany, ManyToOne } from "typeorm";
+import { TiposServicios } from "src/TiposServicio/tipos-servicio.entity";
 
 @Entity()
 export class Servicios{
@@ -11,26 +10,39 @@ export class Servicios{
     id:number;
 
     @Column()
-    descripcion:string;
+    fecha_creacion: Date;
 
     @Column()
-    tipo_servicio:Tipo_servicio;
+    fecha_alteracion: Date;
 
     @Column()
-    valor_servicio:number;
+    descripcion: string;
 
     @Column()
-    fecha_servicio:Date;
+    fecha_inicio: Date;
 
     @Column()
-    kmInicial:number;
+    fecha_fin: Date;
 
     @Column()
-    kmFinal:number;
+    km_inicial: number;
 
-    @ManyToOne(type => Usuario, usuario =>usuario.servicios)
-    usuario:Usuario;
+    @Column()
+    km_final: number;
 
-    @ManyToOne(type => Auto, auto => auto.servicios)
-    auto:Auto;
+    @Column()
+    valor_servicio: number;
+    
+    @Column()
+    estado: estado;
+
+    @ManyToOne(() => Auto, (auto) => auto.servicio, {nullable: false, onDelete: 'CASCADE',})
+        auto: Auto;
+    
+    @ManyToOne(() => Usuario, (usuario) => usuario.servicio, {nullable: false, onDelete: 'CASCADE',})
+        usuario: Usuario;
+    
+    @ManyToOne(() => TiposServicios, (tiposservicio) => tiposservicio.servicios, {nullable: false, onDelete: 'CASCADE',})
+        tiposservicio: TiposServicios;
+    
 }

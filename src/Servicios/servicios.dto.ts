@@ -1,37 +1,46 @@
 import { Type } from "class-transformer";
-import { IsDate, IsEnum, IsInt, IsNumber, IsOptional, IsString, Length} from "class-validator";
-import { Auto } from "src/Autos/autos.entity";
-import { Tipo_servicio } from "src/enums/tipo_servicio.enum";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsEnum, IsInt, IsOptional, IsString, Length, IsDate, IsNumber} from "class-validator";
+import { estado } from "src/enums/estado.enum";
 import { Usuario } from "src/Usuarios/usuarios.entity";
+import { Auto } from "src/Autos/autos.entity";
 
 export class ServiciosDto {
-    @IsEnum(Tipo_servicio)
-    @IsOptional()
-    tipo_servicio: Tipo_servicio;
-
-    @IsNumber()
-    @IsOptional()
-    valor_servicio: number;
 
     @IsDate()
     @IsOptional()
-    fecha_servicio: Date;
+    fecha_creacion: Date;
 
-    @IsNumber()
+    @IsDate()
     @IsOptional()
-    kmInicial:number;
-    
-    @IsNumber()
-    @IsOptional()
-    kmFinal:number;
+    fecha_alteracion: Date;
 
     @IsString()
     @IsOptional()
     descripcion:string;
 
-    usuario:Usuario;
+    @IsDate()
+    @IsOptional()
+    fecha_inicio: Date;
 
-    auto:Auto;
+    @IsDate()
+    @IsOptional()
+    fecha_fin: Date;
+
+    @IsNumber()
+    @IsOptional()
+    km_inicial: number;
+
+    @IsNumber()
+    @IsOptional()
+    km_final: number;
+
+    @IsNumber()
+    @IsOptional()
+    valor_servicio: number;
+
+    @IsEnum(estado, {message:'Error en estado'})
+    estado: estado;
 }
 
 function countryCode(countryCode: any, string: any, arg2: any) {

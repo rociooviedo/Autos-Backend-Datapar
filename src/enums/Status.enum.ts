@@ -1,5 +1,4 @@
-export enum Status {
-    //CONCLUIDA = 'C',
-    ACTIVA = 'A',
-    INACTIVA = 'I'
+export enum status {
+    ACTIVO = 'A',
+    INACTIVO = 'I'
 }

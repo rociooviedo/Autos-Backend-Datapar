@@ -1,4 +1,5 @@
-import { Status } from "src/enums/Status.enum";
+import { disponibilidad } from "src/enums/disponibilidad.enum";
+import { Agendamiento } from "src/Agendamientos/agendamientos.entity";
 import { Servicios } from "src/Servicios/servicios.entity";
 import { Column, Entity, PrimaryGeneratedColumn,OneToMany, OneToOne } from "typeorm";
 
@@ -6,6 +7,15 @@ import { Column, Entity, PrimaryGeneratedColumn,OneToMany, OneToOne } from "type
 export class Auto{
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column()
+    fecha_creacion: Date;
+
+    @Column()
+    fecha_alteracion: Date;
+
+    @Column()
+    descripcion: string;
 
     @Column()
     chapa: string;
@@ -29,12 +39,11 @@ export class Auto{
     anhomodelo: number;
 
     @Column()
-    descripcion: string;
+    disponibilidad: disponibilidad;
 
-    @Column()
-    situacion: Status;
+    @OneToMany(type => Agendamiento, agendamiento => agendamiento.auto,{ cascade: true })
+    agendamiento: Agendamiento;
 
-    @OneToOne(() => Servicios, servicios => servicios.auto,{ cascade: true })
-    servicios: Array<Servicios>;
-   agendamiento: any;
+    @OneToMany(type => Servicios, servicios => servicios.auto,{ cascade: true })
+    servicio: Servicios;
 }
