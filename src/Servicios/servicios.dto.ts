@@ -1,9 +1,6 @@
 import { Type } from "class-transformer";
-import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum, IsInt, IsOptional, IsString, Length, IsDate, IsNumber} from "class-validator";
 import { estado } from "src/enums/estado.enum";
-import { Usuario } from "src/Usuarios/usuarios.entity";
-import { Auto } from "src/Autos/autos.entity";
 
 export class ServiciosDto {
 

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UsuariosDto } from './usuarios.dto';
 import { Usuario } from './usuarios.entity';
+import { ChangeUserPassDto } from './changeUserPass.dto';
 
 @Injectable()
 export class UsuariosService {
@@ -38,5 +39,23 @@ export class UsuariosService {
       async deleteOne(id: number) {
         return await this.repository.delete(id);
       }
+
+      //Autenticación
+      async getUserByLogin(login:string){
+        return await this.repository.findOne({login});
+      }
+
+      async changePassword(dto:ChangeUserPassDto){
+        const user = await this.repository.findOne({login:dto.login});
+        if(user && await user.validatePassword(dto.password))
+        {
+            const editUser = Object.assign(user,{password:dto.newPassword});
+            return await this.repository.save(editUser);
+        }
+        else
+        {
+            throw new NotFoundException('Error en el usuario y/o contraseña ... ');
+        }
+    }   
 
 }

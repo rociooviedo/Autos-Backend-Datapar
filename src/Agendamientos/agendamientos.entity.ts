@@ -30,6 +30,7 @@ export class Agendamiento{
 
     @Column()
     periodo: number;
+    
     @ManyToOne(() => Auto, (auto) => auto.agendamiento, {nullable: false, onDelete: 'CASCADE',})
         auto: Auto;
     
